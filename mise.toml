@@ -62,9 +62,11 @@ auto_install_disable_tools = [
 # layout that ZDOTDIR points at).
 zshrc = "shims"
 
+[bootstrap.hooks.pre-user]
+# Runs after apt:zsh is installed, pre-changing shell with sudo so login_shell succeeds
+run = "sudo chsh -s /bin/zsh $USER"
+
 [bootstrap.user]
-# Replaces the old change_shell(). mise auto-adds the path to /etc/shells
-# (uses sudo) and runs `chsh -s` on the current user's account.
 login_shell = "/bin/zsh"
 
 [bootstrap.hooks.final]
