@@ -1,0 +1,110 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tool_alias]
+
+sesh = "aqua:joshmedeski/sesh"
+tpack = "github:tmuxpack/tpack"
+oh-my-posh = "aqua:JanDeDobbeleer/oh-my-posh"
+gopls = "go:golang.org/x/tools/gopls"
+delve = "go:github.com/go-delve/delve/cmd/dlv"
+bash-lsp = "npm:bash-language-server"
+yaml-lsp = "npm:yaml-language-server"
+vscode-lsps = "npm:vscode-langservers-extracted"
+dockerfile-lsp = "npm:dockerfile-language-server-nodejs"
+tofu-ls = "aqua:opentofu/tofu-ls"
+
+[tools]
+# General
+atuin = "latest"
+bat = "latest"
+delta = "latest"
+eza = "latest"
+fd = "latest"
+fzf = "latest"
+ripgrep = "latest"
+television = "latest"
+zoxide = "latest"
+
+# Tmux
+tmux = "latest"
+tpack = "latest"
+sesh = "latest"
+
+# Shell prompts
+oh-my-posh = "latest"
+# starship = "latest"
+
+# Editors
+neovim = "latest"
+yazi = "latest"
+
+# Structured parsing
+fx = "latest"
+jless = "latest"
+jmespath = "latest"
+jq = "latest"
+jqp = "latest"
+tree-sitter = "latest"
+yq = "latest"
+
+# Git
+github-cli = "latest"
+lazygit = "latest"
+glab = "latest"
+
+# API testing
+hurl = "latest"
+xh = "latest"
+
+# Python
+ruff = "latest"
+uv = "latest"
+ty = "latest"
+# "npm:basedpyright" = "latest"
+
+# Go
+# gopls = "latest"
+# golangci-lint = "latest"
+# golangci-lint-langserver = "latest"
+# delve = "latest"
+
+# Lua
+stylua = "latest"
+lua-language-server = "latest"
+
+# Shell
+shellcheck = "latest"
+shfmt = "latest"
+bash-lsp = "latest"
+
+# Ansible
+# "npm:@ansible/ansible-language-server" = "latest"
+
+# YAML
+yamllint = "latest"
+yaml-lsp = "latest"
+
+# TOML
+taplo = "latest"
+
+# HTML/JSON/XML
+oxfmt = "latest"
+vscode-lsps = "latest"
+
+# Markdown
+marksman = "latest"
+
+# Kubernetes
+k9s = "latest"
+kubectx = "latest"
+kubens = "latest"
+
+# Docker
+nerdctl = "latest"
+hadolint = "latest"
+dockerfile-lsp = "latest"
+
+# Cloud
+# aws-cli = "latest"
+opentofu = "latest"
+tofu-ls = "latest"

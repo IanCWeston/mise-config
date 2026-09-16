@@ -1,0 +1,76 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+# Languages
+node = "lts"
+# go = "latest"
+python = "latest"
+
+[settings]
+
+dotfiles.root = "~/.dotfiles"
+
+python.uv_venv_auto = true
+
+trusted_config_paths = ['~/projects', '~/code']
+env_file = '.env'
+
+lockfile = true
+experimental = true
+
+auto_install_disable_tools = [
+  # Heavy Tools
+  "node",
+  "k9s",
+]
+
+# ---------------------------------------------------------------------------
+# Bootstrap
+# Apply on a fresh machine with:
+#   mise bootstrap --adopt https://github.com/IanCWeston/mise-config.git --yes
+# Or re-run from an existing clone (which is now ~/.config/mise/):
+#   mise bootstrap --yes
+# ---------------------------------------------------------------------------
+
+[bootstrap.packages]
+# Base packages only — versioned tools are managed by [tools] above.
+# mise runs only entries whose manager is available on the current OS.
+"apt:git"                = "latest"
+"apt:curl"               = "latest"
+"apt:zsh"                = "latest"
+"apt:build-essential"    = "latest"
+"dnf:git"                = "latest"
+"dnf:curl"               = "latest"
+"dnf:zsh"                = "latest"
+"dnf:@development-tools" = "latest"
+
+[bootstrap.repos]
+# Each key is the target path mise clones into. The URL is a git remote.
+"~/.dotfiles"         = { url = "https://github.com/IanCWeston/dotfiles.git" }
+"~/.antidote"         = { url = "https://github.com/mattmc3/antidote.git" }
+"~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
+
+[dotfiles]
+"~/.zshenv" = { source = ".zshenv",    mode = "symlink" }
+"~/.config" = { source = "xdg_config", mode = "symlink-each" }
+
+[bootstrap.mise_shell_activate]
+# Writes a marker-delimited `eval "$(mise activate zsh --shims)"` block to
+# ~/.zshrc. Do NOT set zshenv here — the .zshenv symlink
+# from [dotfiles] is the source of truth for that file (it sets ZDOTDIR
+# and shim-activates mise; overwriting it would break the ~/.config/zsh
+# layout that ZDOTDIR points at).
+zshrc = "shims"
+
+[bootstrap.user]
+# Replaces the old change_shell(). mise auto-adds the path to /etc/shells
+# (uses sudo) and runs `chsh -s` on the current user's account.
+login_shell = "/bin/zsh"
+
+[bootstrap.hooks.final]
+# After every bootstrap, verify that the post-install environment is sane.
+# Runs as a hook so it executes even on re-bootstrap when no tools changed.
+run = '''
+mise doctor || true
+echo "Bootstrap complete. Log out and back in for shell change to take effect."
+'''
