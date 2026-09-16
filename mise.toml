@@ -35,24 +35,24 @@ auto_install_disable_tools = [
 [bootstrap.packages]
 # Base packages only — versioned tools are managed by [tools] above.
 # mise runs only entries whose manager is available on the current OS.
-"apt:git"                = "latest"
-"apt:curl"               = "latest"
-"apt:zsh"                = "latest"
-"apt:build-essential"    = "latest"
-"dnf:git"                = "latest"
-"dnf:curl"               = "latest"
-"dnf:zsh"                = "latest"
+"apt:git" = "latest"
+"apt:curl" = "latest"
+"apt:zsh" = "latest"
+"apt:build-essential" = "latest"
+"dnf:git" = "latest"
+"dnf:curl" = "latest"
+"dnf:zsh" = "latest"
 "dnf:@development-tools" = "latest"
 
 [bootstrap.repos]
 # Each key is the target path mise clones into. The URL is a git remote.
-"~/.dotfiles"         = { url = "https://github.com/IanCWeston/dotfiles.git" }
-"~/.antidote"         = { url = "https://github.com/mattmc3/antidote.git" }
+"~/.dotfiles" = { url = "https://github.com/IanCWeston/dotfiles.git" }
+"~/.antidote" = { url = "https://github.com/mattmc3/antidote.git" }
 "~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
 
 [dotfiles]
-"~/.zshenv" = { source = ".zshenv",    mode = "symlink" }
-"~/.config" = { source = "xdg_config", mode = "symlink-each" }
+"~/.zshenv" = { source = "~/.dotfiles/.zshenv", mode = "symlink" }
+"~/.config" = { source = "~/.dotfiles/xdg_config", mode = "symlink-each" }
 
 [bootstrap.mise_shell_activate]
 # Writes a marker-delimited `eval "$(mise activate zsh --shims)"` block to
