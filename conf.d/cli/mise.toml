@@ -1,0 +1,16 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+bat = "latest"
+delta = "latest"
+eza = "latest"
+fd = "latest"
+fzf = "latest"
+ripgrep = "latest"
+fx = "latest"
+jless = "latest"
+jmespath = "latest"
+jq = "latest"
+jqp = "latest"
+tree-sitter = "latest"
+yq = "latest"

@@ -1,0 +1,14 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tool_alias]
+gopls = "go:golang.org/x/tools/gopls"
+delve = "go:github.com/go-delve/delve/cmd/dlv"
+
+# Go tooling is currently inactive, as it was in the previous config.
+# Enable the runtime and tools together when ready:
+#
+# [tools]
+# go = "latest"
+# gopls = "latest"
+# golangci-lint = "latest"
+# delve = "latest"

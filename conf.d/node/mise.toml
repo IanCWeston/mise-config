@@ -1,0 +1,7 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+vscode-lsps = "latest"
+
+[tool_alias]
+vscode-lsps = "npm:vscode-langservers-extracted"

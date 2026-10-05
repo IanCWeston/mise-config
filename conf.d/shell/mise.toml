@@ -1,0 +1,9 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+shellcheck = "latest"
+shfmt = "latest"
+bash-lsp = "latest"
+
+[tool_alias]
+bash-lsp = "npm:bash-language-server"
