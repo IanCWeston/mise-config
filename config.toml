@@ -32,10 +32,6 @@ auto_install_disable_tools = ["node", "k9s"]
 "~/.zshenv" = { source = "~/.dotfiles/.zshenv", mode = "symlink" }
 "~/.config" = { source = "~/.dotfiles/xdg_config", mode = "symlink-each" }
 
-[bootstrap.mise_shell_activate]
-# .zshenv from the dotfiles repo owns ZDOTDIR and mise shim activation.
-zshrc = "shims"
-
 [bootstrap.hooks.final]
 run = '''
 mise doctor

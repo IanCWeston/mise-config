@@ -1,11 +1,4 @@
 #:schema https://github.com/jdx/mise/raw/main/schema/mise.json
 
-[bootstrap.hooks.pre-user]
-# Runs after zsh is installed and before bootstrap changes the login shell.
-run = "sudo chsh -s /bin/zsh $USER"
-
 [bootstrap.user]
 login_shell = "/bin/zsh"
-
-[bootstrap.hooks.final]
-run = "echo 'Personal bootstrap complete. Log out and back in for the shell change to take effect.'"
