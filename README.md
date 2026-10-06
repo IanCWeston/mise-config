@@ -21,13 +21,38 @@ plans and simulates the WSL fallback; WSL itself is not a hosted CI runner.
 ## Usage
 
 Select a profile for an individual command with `-E`, or set `MISE_ENV` for a
-shell session:
+shell session. The dotfiles zsh startup defaults to `personal` unless
+`MISE_ENV` is already set; set it to `work` before starting a work-profile
+shell:
 
 ```sh
 mise -E personal install
 mise -E work bootstrap
 MISE_ENV=work mise install
 ```
+
+## Reconcile a machine
+
+Re-run bootstrap to apply the selected profile's declared packages, repositories,
+dotfiles, shell setup, and tools. For a personal Ubuntu/WSL machine, run this
+from an interactive terminal so the WSL `sudo chsh` hook can authenticate:
+
+```sh
+mise -E personal bootstrap --yes
+```
+
+To refresh configured repositories and package metadata and overwrite conflicting
+managed dotfiles, use:
+
+```sh
+mise -E personal bootstrap --yes --update --force-dotfiles
+```
+
+Review and commit or stash local changes in managed repositories before using
+`--update`; bootstrap stops rather than updating a dirty repository. Avoid
+`--skip-dirty` when reconciling to the configured state, since it skips updating
+those repositories. `--force-dotfiles` only replaces conflicting managed
+dotfiles; bootstrap does not remove unmanaged files or packages.
 
 ## Offline use
 

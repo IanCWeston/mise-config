@@ -34,6 +34,9 @@ auto_install_disable_tools = ["node", "k9s"]
 
 [bootstrap.hooks.final]
 run = '''
+# Bootstrap hooks are non-interactive; mise shims are the supported activation
+# mechanism for this context and let `mise doctor` verify the installation.
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 mise doctor
 echo "Bootstrap complete."
 '''
