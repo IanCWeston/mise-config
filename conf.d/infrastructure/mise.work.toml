@@ -1,0 +1,8 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+opentofu = "latest"
+tofu-ls = "latest"
+
+[tool_alias]
+tofu-ls = "aqua:opentofu/tofu-ls"

@@ -1,0 +1,9 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+atuin = "latest"
+television = "latest"
+oh-my-posh = "latest"
+
+[tool_alias]
+oh-my-posh = "aqua:JanDeDobbeleer/oh-my-posh"

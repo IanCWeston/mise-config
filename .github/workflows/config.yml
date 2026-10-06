@@ -1,0 +1,69 @@
+name: Config validation
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ubuntu:
+    name: Ubuntu config validation
+    runs-on: ubuntu-latest
+    env:
+      MISE_CONFIG_DIR: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: jdx/mise-action@v4
+        with:
+          install: false
+          minimum_release_age: 0s
+      - name: Validate shared and profile configs
+        run: |
+          mise fmt --all --check
+          for profile in personal work; do
+            mise -E "$profile" config ls
+            mise -E "$profile" bootstrap --dry-run --skip repos,dotfiles
+          done
+      - name: Test WSL login-shell fallback
+        run: |
+          python3 - <<'PY' > "$RUNNER_TEMP/wsl-pre-user.sh"
+          import tomllib
+          from pathlib import Path
+
+          config = tomllib.loads(Path("config.personal.toml").read_text())
+          print(config["bootstrap"]["hooks"]["pre-user"]["run"])
+          PY
+          mkdir -p "$RUNNER_TEMP/mock-bin"
+          printf '#!/bin/sh\nprintf "sudo"\nprintf " %%s" "$@"\nprintf "\\n"\n' \
+            > "$RUNNER_TEMP/mock-bin/sudo"
+          chmod +x "$RUNNER_TEMP/mock-bin/sudo"
+          output="$(PATH="$RUNNER_TEMP/mock-bin:$PATH" WSL_INTEROP=1 USER=runner \
+            sh "$RUNNER_TEMP/wsl-pre-user.sh")"
+          test "$output" = "sudo chsh -s /bin/zsh runner"
+
+  fedora:
+    name: Fedora config validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Validate shared and profile configs in Fedora
+        run: |
+          docker run --rm \
+            --volume "$GITHUB_WORKSPACE:/workspace:ro" \
+            --workdir /workspace \
+            fedora:latest \
+            bash -euc '
+              dnf install -y curl
+              curl -fsSL https://mise.run | sh
+              export PATH="$HOME/.local/bin:$PATH"
+              export MISE_CONFIG_DIR=/workspace
+              mise fmt --all --check
+              for profile in personal work; do
+                mise -E "$profile" config ls
+                mise -E "$profile" bootstrap --dry-run --skip repos,dotfiles
+              done
+            '

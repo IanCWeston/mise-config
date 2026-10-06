@@ -1,0 +1,4 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+marksman = "latest"

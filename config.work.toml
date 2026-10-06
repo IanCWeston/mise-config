@@ -1,0 +1,26 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+# Work-specific tools live in conf.d stack fragments.
+
+[settings]
+# Disable the Go stack, Node, and release assets downloaded as bare executables
+# rather than tar/zip archives. Taplo and tree-sitter publish compressed single
+# binaries, not tar archives.
+disable_tools = [
+  "go",
+  "gopls",
+  "golangci-lint",
+  "golangci-lint-langserver",
+  "delve",
+  "node",
+  "fx",
+  "hadolint",
+  "jmespath",
+  "jq",
+  "marksman",
+  "oh-my-posh",
+  "shfmt",
+  "taplo",
+  "tree-sitter",
+  "yq",
+]

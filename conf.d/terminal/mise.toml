@@ -1,0 +1,11 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+tmux = "latest"
+tpack = "latest"
+zoxide = "latest"
+sesh = "latest"
+
+[tool_alias]
+tpack = "github:tmuxpack/tpack"
+sesh = "aqua:joshmedeski/sesh"
