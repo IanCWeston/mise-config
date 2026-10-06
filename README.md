@@ -1,71 +1,40 @@
 # Mise Config
 
-My global mise configuration for shared, personal, and work tooling.
+Global mise configuration for shared, personal, and work environments.
 
-## Profiles
+## Design
 
-The base config provides shared settings. Each tooling stack lives in its own
-directory under `conf.d/`, where mise discovers `mise.toml` for shared tools
-and `mise.personal.toml` or `mise.work.toml` for profile-specific tools:
+`config.toml` contains shared settings and machine setup. Tool stacks are
+organized by domain under `conf.d/`: each `mise.toml` fragment is shared, while
+`mise.personal.toml` and `mise.work.toml` fragments are loaded only for their
+matching environment. The profile config files hold environment-wide settings
+and bootstrap behavior.
 
-```text
-conf.d/
-  python/mise.toml
-  go/mise.personal.toml
-  node/mise.toml
-  editors/mise.toml
-  toml/mise.toml
-  shell/mise.toml
-  containers/mise.work.toml
-  terminal/mise.toml
-  terminal/mise.personal.toml
-```
+## Usage
 
-For example, the Python runtime, package manager, linter, formatter, and type
-checker are grouped in `conf.d/python/mise.toml`. The Node runtime and language
-servers live together in `conf.d/node/mise.toml`. Editors and TOML tooling are
-shared; the Go stack is personal-only and remains inactive until its tools are
-enabled.
-`config.personal.toml` and `config.work.toml` are for profile-wide settings and
-bootstrap behavior, rather than individual tool lists.
-
-Dotfiles, shell configuration links, tmux, and TPM are shared and apply on all
-machines. The personal profile additionally changes the login shell; work
-bootstrap leaves the current shell setting alone.
-
-Personal and work tools are opt-in mise environments:
+Select a profile for an individual command with `-E`, or set `MISE_ENV` for a
+shell session:
 
 ```sh
 mise -E personal install
+mise -E work bootstrap
+MISE_ENV=work mise install
+```
+
+## Offline use
+
+Prepare a machine while it has network access, using the same profile, mise
+version, platform, and architecture you plan to use offline. Install the
+configured tools in advance; `mise.lock` records resolved versions and download
+metadata but does not contain the tool binaries.
+
+```sh
 mise -E work install
+MISE_OFFLINE=1 mise -E work install
 ```
 
-Use the same environment when bootstrapping. Both profiles apply shared
-dotfiles and tmux setup.
-
-```sh
-mise -E personal bootstrap --adopt https://github.com/IanCWeston/mise-config.git
-mise -E work bootstrap --adopt https://github.com/IanCWeston/mise-config.git
-```
-
-`mise -E personal ...` and `mise -E work ...` select native mise config
-environments (`config.personal.toml` and `config.work.toml`). Without `-E`,
-only shared stacks are active. `config.toml` requires mise 2026.10.0 or newer.
-`-E` applies to that command; set `MISE_ENV=personal` or `MISE_ENV=work` in a
-shell to keep a profile active there.
-
-The work profile disables Go and Node, and tools whose current locked release
-URLs are bare executables rather than tar/zip archives. Taplo and tree-sitter
-are also disabled because their `.gz` downloads are compressed single
-binaries, not archives. Review `settings.disable_tools` in `config.work.toml`
-as tool versions and release assets change. This setting is a selection
-preference, not a security boundary or an uninstall mechanism.
-
-Inspect the effective files and preview setup before applying:
-
-```sh
-mise -E personal config ls
-mise -E work config ls
-mise -E personal bootstrap --dry-run
-mise -E work bootstrap --dry-run
-```
+The offline command can use tools already installed locally, but cannot fetch
+missing tools or bootstrap network resources such as Git repositories. For a
+disconnected machine, provide the prepared mise install data and any
+backend-specific caches it needs. `--locked` checks for lockfile entries; it
+does not make an installation offline.
