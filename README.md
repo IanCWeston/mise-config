@@ -10,6 +10,14 @@ organized by domain under `conf.d/`: each `mise.toml` fragment is shared, while
 matching environment. The profile config files hold environment-wide settings
 and bootstrap behavior.
 
+## Supported platforms
+
+The bootstrap package declarations target Ubuntu (`apt`) and Fedora (`dnf`).
+WSL uses the Ubuntu package path; its personal profile uses a WSL-only `sudo
+chsh` workaround for PAM, followed by mise's native login-shell management.
+GitHub Actions validates both Ubuntu and Fedora config loading and bootstrap
+plans and simulates the WSL fallback; WSL itself is not a hosted CI runner.
+
 ## Usage
 
 Select a profile for an individual command with `-E`, or set `MISE_ENV` for a

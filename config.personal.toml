@@ -1,4 +1,12 @@
 #:schema https://github.com/jdx/mise/raw/main/schema/mise.json
 
+[bootstrap.hooks.pre-user]
+# WSL's PAM integration may reject the regular user's chsh; use sudo there.
+run = '''
+if [ -n "${WSL_INTEROP:-}" ] || grep -qiE 'microsoft|wsl' /proc/sys/kernel/osrelease /proc/version 2>/dev/null; then
+  sudo chsh -s /bin/zsh "$USER"
+fi
+'''
+
 [bootstrap.user]
 login_shell = "/bin/zsh"
