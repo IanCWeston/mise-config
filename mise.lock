@@ -568,6 +568,7 @@ backend = "aqua:PaulJuliusMartinez/jless"
 specifiers = ["latest"]
 
 [tools.jless."platforms.linux-x64"]
+checksum = "blake3:de2367ba74a0806fdeb7e117e13713a64e4bb2b8fb9a650b782668a0c8213cd9"
 url = "https://github.com/PaulJuliusMartinez/jless/releases/download/v0.9.0/jless-v0.9.0-x86_64-unknown-linux-gnu.zip"
 url_api = "https://api.github.com/repos/PaulJuliusMartinez/jless/releases/assets/117306822"
 
@@ -593,6 +594,7 @@ url = "https://github.com/jmespath/jp/releases/download/0.2.1/jp-linux-arm64"
 url_api = "https://api.github.com/repos/jmespath/jp/releases/assets/45966900"
 
 [tools.jmespath."platforms.linux-x64"]
+checksum = "blake3:134547de962373daafdb1991a6922f034893a93c31a0b50f5308bfc764501dcd"
 url = "https://github.com/jmespath/jp/releases/download/0.2.1/jp-linux-amd64"
 url_api = "https://api.github.com/repos/jmespath/jp/releases/assets/45966888"
 
@@ -1419,6 +1421,7 @@ url = "https://github.com/tamasfe/taplo/releases/download/0.10.0/taplo-linux-aar
 url_api = "https://api.github.com/repos/tamasfe/taplo/releases/assets/257322597"
 
 [tools.taplo."platforms.linux-x64"]
+checksum = "blake3:4871fab0e60275a1eb46e7190726e144f56c9a9527f59b0d1da5a042baead8e2"
 url = "https://github.com/tamasfe/taplo/releases/download/0.10.0/taplo-linux-x86_64.gz"
 url_api = "https://api.github.com/repos/tamasfe/taplo/releases/assets/257322600"
 
