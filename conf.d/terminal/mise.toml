@@ -3,6 +3,9 @@
 [tools]
 tmux = "latest"
 tpack = "latest"
+zoxide = "latest"
+sesh = "latest"
 
 [tool_alias]
 tpack = "github:tmuxpack/tpack"
+sesh = "aqua:joshmedeski/sesh"

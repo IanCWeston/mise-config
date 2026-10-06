@@ -3,10 +3,7 @@
 [tools]
 atuin = "latest"
 television = "latest"
-zoxide = "latest"
-sesh = "latest"
 oh-my-posh = "latest"
 
 [tool_alias]
-sesh = "aqua:joshmedeski/sesh"
 oh-my-posh = "aqua:JanDeDobbeleer/oh-my-posh"
