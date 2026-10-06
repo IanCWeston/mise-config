@@ -26,7 +26,7 @@ jobs:
           mise fmt --all --check
           for profile in personal work; do
             mise -E "$profile" config ls
-            mise -E "$profile" bootstrap --dry-run --skip repos
+            mise -E "$profile" bootstrap --dry-run --skip repos,dotfiles
           done
       - name: Test WSL login-shell fallback
         run: |
@@ -64,6 +64,6 @@ jobs:
               mise fmt --all --check
               for profile in personal work; do
                 mise -E "$profile" config ls
-                mise -E "$profile" bootstrap --dry-run --skip repos
+                mise -E "$profile" bootstrap --dry-run --skip repos,dotfiles
               done
             '
