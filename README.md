@@ -20,16 +20,28 @@ plans and simulates the WSL fallback; WSL itself is not a hosted CI runner.
 
 ## Usage
 
-Select a profile for an individual command with `-E`, or set `MISE_ENV` for a
-shell session. The dotfiles zsh startup defaults to `personal` unless
-`MISE_ENV` is already set; set it to `work` before starting a work-profile
-shell:
+The global `miserc.toml` defaults to the `personal` profile. Select a profile
+for an individual command with `-E`, set `MISE_ENV` for a shell session, or use
+the untracked `miserc.local.toml` in `~/.config/mise` to select a machine-wide
+profile without changing the shared configuration:
 
 ```sh
 mise -E personal install
 mise -E work bootstrap
 MISE_ENV=work mise install
 ```
+
+For a machine that should default to the work profile, create
+`~/.config/mise/miserc.local.toml` with:
+
+```toml
+env = ["work"]
+```
+
+The local file is git-ignored. `MISE_ENV` and `mise -E` explicitly override
+the config-file selection; project `.miserc.toml` files can also select an
+environment for a project. If a shell already has `MISE_ENV` exported, unset
+it or start a fresh login session for the local selection to take effect.
 
 ## Reconcile a machine
 
