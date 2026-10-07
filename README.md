@@ -55,6 +55,15 @@ from an interactive terminal so the WSL `sudo chsh` hook can authenticate:
 mise -E personal bootstrap --yes
 ```
 
+To apply packages, repositories, dotfiles, and shell setup without installing
+the configured tools, skip the tools phase:
+
+```sh
+mise -E work bootstrap --yes --skip tools
+```
+
+Install tools later as needed with `mise -E work install <tool>`.
+
 To refresh configured repositories and package metadata and overwrite conflicting
 managed dotfiles, use:
 
