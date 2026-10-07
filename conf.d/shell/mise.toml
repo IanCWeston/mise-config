@@ -3,7 +3,3 @@
 [tools]
 shellcheck = "latest"
 shfmt = "latest"
-bash-lsp = "latest"
-
-[tool_alias]
-bash-lsp = "npm:bash-language-server"

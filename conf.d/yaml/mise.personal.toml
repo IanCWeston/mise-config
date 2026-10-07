@@ -1,0 +1,6 @@
+# yaml-lsp uses the npm backend and requires Node.js.
+[tools]
+yaml-lsp = "latest"
+
+[tool_alias]
+yaml-lsp = "npm:yaml-language-server"

@@ -1,0 +1,6 @@
+# dockerfile-lsp uses the npm backend and requires Node.js.
+[tools]
+dockerfile-lsp = "latest"
+
+[tool_alias]
+dockerfile-lsp = "npm:dockerfile-language-server-nodejs"

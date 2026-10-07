@@ -2,7 +2,3 @@
 
 [tools]
 yamllint = "latest"
-yaml-lsp = "latest"
-
-[tool_alias]
-yaml-lsp = "npm:yaml-language-server"

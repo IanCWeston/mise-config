@@ -1,5 +1,4 @@
-#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
-
+# The work profile disables Node.js.
 [tools]
 node = "lts"
 vscode-lsps = "latest"

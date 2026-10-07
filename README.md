@@ -8,7 +8,9 @@ Global mise configuration for shared, personal, and work environments.
 organized by domain under `conf.d/`: each `mise.toml` fragment is shared, while
 `mise.personal.toml` and `mise.work.toml` fragments are loaded only for their
 matching environment. The profile config files hold environment-wide settings
-and bootstrap behavior.
+and bootstrap behavior. Node.js and npm-backed tools are personal-only and
+remain split across their owning stacks, so the work profile's Node exclusion
+does not select Node-dependent tools without the runtime.
 
 ## Supported platforms
 

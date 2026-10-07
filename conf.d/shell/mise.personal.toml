@@ -1,0 +1,6 @@
+# bash-lsp requires Node.js and is therefore personal-only.
+[tools]
+bash-lsp = "latest"
+
+[tool_alias]
+bash-lsp = "npm:bash-language-server"

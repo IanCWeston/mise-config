@@ -1,0 +1,3 @@
+# oxfmt uses the npm backend and requires Node.js.
+[tools]
+oxfmt = "latest"
