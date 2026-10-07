@@ -6,7 +6,6 @@ dotfiles.root = "~/.dotfiles"
 python.uv_venv_auto = true
 trusted_config_paths = ["~/projects", "~/code"]
 env_file = ".env"
-lockfile = true
 
 # Avoid silently installing heavyweight tools merely because a config is active.
 auto_install_disable_tools = ["node", "k9s"]
